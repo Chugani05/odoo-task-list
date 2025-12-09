@@ -1,19 +1,22 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import models, fields, api
 
+class ListaTareas(models.Model):
+    _name = 'lista_tareas.lista_tareas'
+    _description = 'Lista de tareas'
 
-# class lista_tareas(models.Model):
-#     _name = 'lista_tareas.lista_tareas'
-#     _description = 'lista_tareas.lista_tareas'
+    tarea = fields.Char(string='Tarea')
+    prioridad = fields.Integer(string='Prioridad')
+    urgente = fields.Boolean(
+        string='Urgente',
+        compute='_value_urgente',
+        store=True
+    )
+    realizada = fields.Boolean(string='Realizada')
+    asignado_a = fields.Many2one('res.users', string='Asignado a', required=False, default=lambda self: self.env.user)
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
-
+    @api.depends('prioridad')
+    def _value_urgente(self):
+        for record in self:
+            record.urgente = record.prioridad > 10

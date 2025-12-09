@@ -1,34 +1,34 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "lista_tareas",
+    'name': "Lista de tareas",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': """
+    Sencilla Lista de tareas""",
 
     'description': """
-Long description of module's purpose
+    Sencilla lista de tareas utilizadas para crear un nuevo módulo con un nuevo modelo de datos
     """,
 
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
+    'author': "Sara",
+    'website': "https://apuntesfpinformatica.es",
+    # Indicamos que es una aplicación
+    'application': True,
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
+    # En la siguiente URL se indica qué categorías pueden usarse
+    # https://github.com/odoo/odoo/blob/17.0/odoo/addons/base/data/ir_module_category_data.xml
+    # Vamos a utilizar la categoría Productivity
+    'category': 'Productivity',
     'version': '0.1',
 
-    # any module necessary for this one to work correctly
+    # Indicamos lista de módulos necesarios para que este funcione correctamente
+    # En este ejemplo solo depende del módulo "base"
     'depends': ['base'],
 
-    # always loaded
+    # Esto siempre se carga
     'data': [
-        # 'security/ir.model.access.csv',
+        # Este primero indica la politica de acceso del módulo
+        'security/ir.model.access.csv',
+        # Cargamos las vistas y las plantillas
         'views/views.xml',
-        'views/templates.xml',
-    ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    ]
 }
-
