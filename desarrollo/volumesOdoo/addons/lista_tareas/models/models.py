@@ -16,8 +16,8 @@ class ListaTareas(models.Model):
     realizada = fields.Boolean(string='Realizada')
     asignado_a = fields.Many2one('res.users', string='Asignado a', required=False, default=lambda self: self.env.user)
     fecha_limite = fields.Date(string='Fecha limite', required=False)
-    fecha_creacion = fields.Datetime(string='Fecha de creacion', default=lambda self: fields.Datetime.today())
-    retrasada = fields.Boolean(string='retrasada', compute='_check_delayed', store=True)
+    fecha_creacion = fields.Datetime(string='Fecha de creacion', default=lambda self: fields.Datetime.now())
+    retrasada = fields.Boolean(string='Retrasada', compute='_check_delayed', store=True)
 
     @api.depends('prioridad')
     def _check_urgency(self):
@@ -28,6 +28,6 @@ class ListaTareas(models.Model):
     def _check_delayed(self):
         for record in self:
             if record.fecha_limite: 
-                record.realizada = False and record.fecha_limite < fields.Date.today()
+                record.retrasada = not record.realizada and record.fecha_limite < fields.Date.today()
             else:
                 record.retrasada = False
