@@ -8,8 +8,10 @@
           <field name="tarea" />
           <field name="prioridad" />
           <field name="urgente" />
-          <field name="realizada" />
           <field name="asignado_a" />
+          <field name="fecha_limite" />
+          <field name="realizada" />
+          <field name="retrasada" />
         </tree>
       </field>
     </record>
@@ -27,8 +29,15 @@
               <field name="urgente" />
             </group>
             <group>
-              <field name="realizada" />
               <field name="asignado_a" />
+            </group>
+            <group>
+              <field name="fecha_creacion" />
+              <field name="fecha_limite" />
+            </group>
+            <group>
+              <field name="realizada" />
+              <field name="retrasada" />
             </group>
           </sheet>
         </form>
@@ -45,7 +54,6 @@
         </graph>
       </field>
     </record>
-
     <record model="ir.actions.act_window" id="lista_tareas.action_window">
       <field name="name">Listado de tareas pendientes</field>
       <field name="res_model">lista_tareas.lista_tareas</field>
