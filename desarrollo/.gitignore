@@ -2,3 +2,4 @@
 volumesOdoo/dataPostgreSQL/
 volumesOdoo/odoo/
 .venv
+__pycache__/

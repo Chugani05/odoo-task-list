@@ -58,15 +58,42 @@
       <field name="name">lista_tareas.view.calendar</field>
       <field name="model">lista_tareas.lista_tareas</field>
       <field name="arch" type="xml">
-      <calendar date_start="fecha_limite" mode="month">
+        <calendar date_start="fecha_limite" mode="month">
           <field name="tarea" />
           <field name="asignado_a"  />
         </calendar>
+      </field>
+    </record>
+    <record id="lista_tareas_view_search" model="ir.ui.view">
+      <field name="name">lista_tareas.view.search</field>
+      <field name="model">lista_tareas.lista_tareas</field>
+      <field name="arch" type="xml">
+        <search string="Busqueda">
+          <field name="tarea" string="Nombre de la tarea" />
+          <filter name="asignado_a_monica" string="Asignado a Monica"
+            domain="[('asignado_a', '=', 'Monica')]" />
+          <filter name="asignado_a_chandler" string="Asignado a Chandler"
+            domain="[('asignado_a', '=', 'Chandler')]" />
+          <filter name="asignado_a_ross" string="Asignado a Ross"
+            domain="[('asignado_a', '=', 'Ross')]" />
+          <filter name="asignado_a_rachel" string="Asignado a Rachel"
+            domain="[('asignado_a', '=', 'Rachel')]" />
+          <filter name="asignado_a_joey" string="Asignado a Joey"
+            domain="[('asignado_a', '=', 'Joey')]" />
+          <filter name="asignado_a_phoebe" string="Asignado a Phoebe"
+            domain="[('asignado_a', '=', 'Phoebe')]" />
+          <filter name="realizada" string="Realizada" domain="[('realizada', '=', 'true')]" />
+          <filter name="no_realizada" string="No realizada" domain="[('realizada', '!=', 'true')]" />
+          <filter name="retrasada" string="Retrasada" domain="[('retrasada', '=', 'true')]" />
+          <filter name="group_by_asignado" string="Asignado" context='{"group_by": "asignado_a"}' />
+          <filter name="group_by_realizada" string="Realizada" context='{"group_by": "realizada"}' />
+        </search>
+      </field>
     </record>
     <record id="lista_tareas.action_window" model="ir.actions.act_window">
       <field name="name">Listado de tareas</field>
       <field name="res_model">lista_tareas.lista_tareas</field>
-      <field name="view_mode">tree,form,graph,calendar</field>
+      <field name="view_mode">tree,form,graph,calendar,search</field>
     </record>
     
     <menuitem name="Listado de tareas" id="lista_tareas.menu_root" />
